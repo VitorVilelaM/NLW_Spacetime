@@ -44,8 +44,6 @@ export async function authRotes(app: FastifyInstance) {
 
         const userInfo = userSchema.parse(userResponse.data);
 
-        console.log(userInfo);
-
         let user = await prisma.user.findUnique({
             where: {
                 githubId: userInfo.id
@@ -70,7 +68,7 @@ export async function authRotes(app: FastifyInstance) {
             sub: user.id,
             expiresIn: '30 days',
         });
-
+        
         return token;
     });
 }
