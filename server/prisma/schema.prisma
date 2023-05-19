@@ -12,6 +12,21 @@ datasource db {
 
 //Criando tabelas/models dentro do meu BD
 model User {
-  id   String @id @default(uuid()) //Este campo vai ser minha PrimaryKey através do @id
-  name String
+  id        String   @id @default(uuid()) //Este campo vai ser minha PrimaryKey através do @id
+  githubId  Int      @unique
+  name      String
+  login     String
+  avatarUrl String
+  memories  Memory[]
+}
+
+model Memory {
+  id        String   @id @default(uuid())
+  coverUrl  String
+  content   String
+  isPublic  Boolean  @default(false)
+  createdAt DateTime @default(now())
+
+  user   User   @relation(fields: [userId], references: [id])
+  userId String
 }
