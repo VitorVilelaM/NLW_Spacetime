@@ -42,6 +42,6 @@ export async function uploadRotes(app: FastifyInstance) {
         const fullUrl = request.protocol.concat('://').concat(request.hostname);
         const fileUrl = new URL(`/uploads/${filename}`, fullUrl).toString();
 
-        return {ok : true}
+        return {fileUrl};
     });
 }
